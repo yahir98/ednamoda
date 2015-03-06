@@ -10,9 +10,13 @@
             <h1>{{page_title}}</h1>
             <ul class="menu">
                 <li><a href="index.php">Inicio</a></li>
+                <li><a href="index.php?page=categorias">Categorias</a></li>
                 <li><a href="index.php?page=login">Inicia Sesión</a></li>
                 <li><a href="index.php?page=registro">Regístrate</a></li>
             </ul>
             {{{page_content}}}
+            <div class="footer">
+              Todos los derechos Reservados 2015
+            </div>
         </body>
     </html>

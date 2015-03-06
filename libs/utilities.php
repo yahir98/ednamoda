@@ -6,7 +6,7 @@
         $global_context[$key] = $value;
     }
 
-    function redirectWithMessage($message, $url){
+    function redirectWithMessage($message, $url="index.php"){
       echo "<script>alert('$message'); window.location='$url';</script>";
       die();
     }

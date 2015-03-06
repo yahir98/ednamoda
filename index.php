@@ -16,7 +16,7 @@
     require_once("controllers/verificar.mw.php");
 
     //Este switch se encarga de todo el enrutamiento
-    
+
     switch($pageRequest){
         case "home":
             //llamar al controlador
@@ -27,6 +27,14 @@
             break;
         case "registro":
             require_once("controllers/registro.control.php");
+            break;
+        //para agregar una nueva pagina
+        // agregar otro case
+        case "categorias":
+            require_once("controllers/categorias.control.php");
+            break;
+        case "category":
+            require_once("controllers/category.control.php");
             break;
         default:
             require_once("controllers/error.control.php");

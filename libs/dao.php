@@ -29,7 +29,7 @@
         $result = $conexion->query($sqlstr);
         $resultArray = array();
 
-        $resultArray[] = $result->fetch_assoc();
+        $resultArray = $result->fetch_assoc();
 
         return $resultArray;
    }
@@ -41,7 +41,7 @@
         return $conexion->affected_rows;
    }
 
-   function valstr($str){
+   function valstr($str, &$conexion = null){
       if(!$conexion) global $conexion;
       return $conexion->escape_string($str);
    }
