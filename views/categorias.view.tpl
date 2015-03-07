@@ -12,7 +12,10 @@
     <td>{{ctgid}}</td>
     <td>{{ctgdsc}}</td>
     <td>{{ctgest}}</td>
-    <td><a href="index.php?page=category&acc=upd&ctgid={{ctgid}}">Update</a></td>
+    <td>
+      <a href="index.php?page=category&acc=upd&ctgid={{ctgid}}">Update</a> | 
+      <a href="index.php?page=category&acc=dlt&ctgid={{ctgid}}">Delete</a>
+    </td>
   </tr>
   {{endfor categorias}}
 </table>

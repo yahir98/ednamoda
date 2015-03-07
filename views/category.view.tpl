@@ -8,11 +8,11 @@
   </div>
   <div>
     <label class="col4" for="ctgdsc">Categoría</label>
-    <input class="col8" type="text" id="ctgdsc" name="ctgdsc" value="{{ctgdsc}}"/>
+    <input class="col8" type="text" id="ctgdsc" name="ctgdsc" value="{{ctgdsc}}" {{disabled}}/>
   </div>
   <div>
     <label class="col4" for="ctgest">Estado</label>
-    <select class="col8" id="ctgest" name="ctgest">
+    <select class="col8" id="ctgest" name="ctgest" {{disabled}}>
       <option value="ACT" {{actSelected}}>Activo</option>
       <option value="INA" {{inaSelected}}>Inactivo</option>
     </select>

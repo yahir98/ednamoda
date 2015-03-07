@@ -54,6 +54,11 @@ input, select{
 }
 input[disabled=disabled]{
   background-color:#AAA;
+  color:#EEE;
+}
+select[disabled=disabled]{
+  background-color:#AAA;
+  color:#EEE;
 }
 
 select{
