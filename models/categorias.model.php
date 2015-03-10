@@ -46,7 +46,7 @@
       if($categoriaID){
         $sqlDelete = "delete from categorias where ctgid=%d;";
         $sqlDelete = sprintf($sqlDelete,
-                      valstr($categoria["ctgid"])
+                      valstr($categoriaID)
                     );
         return ejecutarNonQuery($sqlDelete);
       }

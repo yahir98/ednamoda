@@ -76,7 +76,7 @@
         case "dlt":
         if(isset($_POST["btnacc"])){
           //implementar logica de guardado
-          if(borrarCategoria($_POST)){
+          if(borrarCategoria($_POST["ctgid"])){
             //forzando a que se actualice con los datos de la db
             redirectWithMessage("¡Categoría Borrada!","index.php?page=categorias");
           }
@@ -85,7 +85,7 @@
             $categoria = obtenerCategoria($_GET["ctgid"]);
             if($categoria){
               $htmlDatos["categoryTitle"] = "¿Desea borrar ".$categoria["ctgdsc"] . "?";
-              $htmlDatos["categoryMode"] = "upd";
+              $htmlDatos["categoryMode"] = "dlt";
               $htmlDatos["ctgid"] = $categoria["ctgid"];
               $htmlDatos["ctgdsc"]=$categoria["ctgdsc"];
               $htmlDatos["ctgest"]=$categoria["ctgest"];
