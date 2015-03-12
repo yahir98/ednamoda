@@ -36,6 +36,14 @@
         case "category":
             require_once("controllers/category.control.php");
             break;
+        //Mantenimiento de Unidades
+        case "unidades":
+            require_once("controllers/mnt/unidades.control.php");
+            break;
+        case "unidad":
+                require_once("controllers/mnt/unidad.control.php");
+                break;
+
         default:
             require_once("controllers/error.control.php");
 

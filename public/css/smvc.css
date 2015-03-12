@@ -71,6 +71,23 @@ select{
   width:100%;
 }
 
+.hd{
+  font-weight:bold;
+}
+
+.rowhd, .row{
+  clear:both;
+  overflow:auto;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+}
+.rowhd{
+  background-color:#DDD;
+}
+.row:nth-child(even){
+  background-color:#EEE;
+}
+
 @media screen and (min-width:481px){
   .right{
     text-align:right;
