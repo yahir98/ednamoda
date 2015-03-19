@@ -12,6 +12,7 @@
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="index.php?page=categorias">Categorias</a></li>
                 <li><a href="index.php?page=unidades">Unidades</a></li>
+                <li><a href="index.php?page=empresas">Empresas</a></li>
                 <li><a href="index.php?page=login">Inicia Sesión</a></li>
                 <li><a href="index.php?page=registro">Regístrate</a></li>
             </ul>

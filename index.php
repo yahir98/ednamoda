@@ -43,7 +43,10 @@
         case "unidad":
                 require_once("controllers/mnt/unidad.control.php");
                 break;
-
+        //Mantenimiento de Unidades
+        case "empresas":
+            require_once("controllers/mnt/empresas.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
