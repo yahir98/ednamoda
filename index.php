@@ -47,6 +47,9 @@
         case "empresas":
             require_once("controllers/mnt/empresas.control.php");
             break;
+        case "empresa":
+            require_once("controllers/mnt/empresa.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
