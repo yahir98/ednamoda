@@ -32,6 +32,7 @@
     $htmlDatos["wrhSelected"]="";
     $htmlDatos["disabled"]="";
 
+
     if(isset($_GET["acc"])){
       switch($_GET["acc"]){
         //Manejando si es un insert
@@ -44,18 +45,11 @@
             if($lastID){
               redirectWithMessage("¡Empresa Ingresada!","index.php?page=empresa&acc=upd&empresaId=".$lastID);
             }else{
-              $htmlDatos["empresaId"] = $_POST["empresaId"];
-              $htmlDatos["empdsc"]= $_POST["empdsc"];
-              $htmlDatos["emprtn"]=$_POST["emprtn"];
-              $htmlDatos["empdir"]=$_POST["empdir"];
-              $htmlDatos["emptel"]=$_POST["emptel"];
-              $htmlDatos["emptel2"]=$_POST["emptel2"];
-              $htmlDatos["empurl"]=$_POST["empurl"];
-              $htmlDatos["empest"]=$_POST["empest"];
+
+              mergeArrayTo($_POST, $_htmlDatos);
+
               $htmlDatos["actSelected"]=($_POST["empest"] =="ACT")?"selected":"";
               $htmlDatos["inaSelected"]=($_POST["empest"] =="INA")?"selected":"";
-              $htmlDatos["empctc"]=$_POST["empctc"];
-              $htmlDatos["emptip"]=$_POST["emptip"];
               $htmlDatos["srvSelected"]=($_POST["emptip"] =="SRV")?"selected":"";
               $htmlDatos["rtlSelected"]=($_POST["emptip"] =="RTL")?"selected":"";
               $htmlDatos["wrhSelected"]=($_POST["emptip"] =="WRH")?"selected":"";
@@ -79,18 +73,16 @@
               $htmlDatos["empresaTitle"] = "Actualizar ".$empresa["empdsc"];
               $htmlDatos["empresaMode"] = "upd";
 
-              $htmlDatos["empresaId"] = $empresa["empresaId"];
-              $htmlDatos["empdsc"]= $empresa["empdsc"];
-              $htmlDatos["emprtn"]=$empresa["emprtn"];
-              $htmlDatos["empdir"]=$empresa["empdir"];
-              $htmlDatos["emptel"]=$empresa["emptel"];
-              $htmlDatos["emptel2"]=$empresa["emptel2"];
-              $htmlDatos["empurl"]=$empresa["empurl"];
-              $htmlDatos["empest"]=$empresa["empest"];
+              // Esta funcion mergeArrayTo se encuentra en libs/utilities.php
+              // utiliza parametros por referencia se usa para llenar los
+              // datos comunes del primer arreglo segun llave en el segundo
+              // si existen en el segundo. Asi podemos compiar los datos empresas directamente
+              // en el arreglo htmlDatos sin tener que estar escribiendo cada asignación.
+
+              mergeArrayTo($empresa , $htmlDatos);
+
               $htmlDatos["actSelected"]=($empresa["empest"] =="ACT")?"selected":"";
               $htmlDatos["inaSelected"]=($empresa["empest"] =="INA")?"selected":"";
-              $htmlDatos["empctc"]=$empresa["empctc"];
-              $htmlDatos["emptip"]=$empresa["emptip"];
               $htmlDatos["srvSelected"]=($empresa["emptip"] =="SRV")?"selected":"";
               $htmlDatos["rtlSelected"]=($empresa["emptip"] =="RTL")?"selected":"";
               $htmlDatos["wrhSelected"]=($empresa["emptip"] =="WRH")?"selected":"";
@@ -118,22 +110,15 @@
             $htmlDatos["empresaTitle"] = "Actualizar ".$empresa["empdsc"];
             $htmlDatos["empresaMode"] = "upd";
 
-            $htmlDatos["empresaId"] = $empresa["empresaId"];
-            $htmlDatos["empdsc"]= $empresa["empdsc"];
-            $htmlDatos["emprtn"]=$empresa["emprtn"];
-            $htmlDatos["empdir"]=$empresa["empdir"];
-            $htmlDatos["emptel"]=$empresa["emptel"];
-            $htmlDatos["emptel2"]=$empresa["emptel2"];
-            $htmlDatos["empurl"]=$empresa["empurl"];
-            $htmlDatos["empest"]=$empresa["empest"];
+            mergeArrayTo($empresa , $htmlDatos);
+
             $htmlDatos["actSelected"]=($empresa["empest"] =="ACT")?"selected":"";
             $htmlDatos["inaSelected"]=($empresa["empest"] =="INA")?"selected":"";
-            $htmlDatos["empctc"]=$empresa["empctc"];
-            $htmlDatos["emptip"]=$empresa["emptip"];
             $htmlDatos["srvSelected"]=($empresa["emptip"] =="SRV")?"selected":"";
             $htmlDatos["rtlSelected"]=($empresa["emptip"] =="RTL")?"selected":"";
             $htmlDatos["wrhSelected"]=($empresa["emptip"] =="WRH")?"selected":"";
             $htmlDatos["disabled"]="disabled";
+
             renderizar("empresa", $htmlDatos);
           }else{
               redirectWithMessage("¡Empresa No Encontrada!","index.php?page=empresas");
