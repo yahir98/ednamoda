@@ -1,15 +1,15 @@
 <?php
 /* Login Controller
- * 2014-10-14 
+ * 2014-10-14
  * Created By OJBA
  * Last Modification 2014-10-14 20:04
  */
   require_once("libs/template_engine.php");
   require_once("models/usuarios.model.php");
-  
-  
+
+
   function run(){
-    
+
     $userName = "";
     $returnUrl = "";
     $errores = array();
@@ -17,8 +17,8 @@
         $userName = $_POST["txtUser"];
         $pswd = $_POST["txtPswd"];
         $returnUrl = $_POST["returnUrl"];
-        $usuario = obtenerUsuario($userName)[0];
-        
+        $usuario = obtenerUsuario($userName);
+
         if($usuario){
           $salt = $usuario["usuariofching"];
           if ($salt % 2 == 0){
@@ -26,7 +26,7 @@
           }else {
             $pswd = $salt . $pswd;
           }
-          
+
           $pswd = md5($pswd);
           if($usuario["usuariopwd"] == $pswd){
             mw_setEstaLogueado($userName, true);
@@ -39,7 +39,7 @@
           $errores[] = array("errmsg"=>"Credenciales Incorrectas");
         }
     }
-    
+
     if(isset($_GET["returnUrl"])){
       $returnUrl = urldecode($_GET["returnUrl"]);
     }
@@ -48,10 +48,10 @@
                    "returnUrl" => $returnUrl,
                    "mostrarErrores" => (count($errores)>0),
                    "errores" => $errores);
-    
+
     renderizar("login", $datos);
-    
+
   }
- 
+
   run();
 ?>

@@ -9,9 +9,14 @@
   require_once("models/empresas.model.php");
 
   function run(){
-    $empresas = array();
-    $empresas = obtenerEmpresas();
-    renderizar("empresas", array("empresas" => $empresas));
+    if(mw_estaLogueado()){
+      $empresas = array();
+      $empresas = obtenerEmpresas();
+      renderizar("empresas", array("empresas" => $empresas));
+    }else{
+      mw_redirectToLogin("index.php?page=empresas");
+    }
+
   }
 
   run();

@@ -12,9 +12,8 @@
 
     //Incorporando los midlewares son codigos que se deben ejecutar
     //Siempre
-    require_once("controllers/site.mw.php");
     require_once("controllers/verificar.mw.php");
-
+    require_once("controllers/site.mw.php");
     //Este switch se encarga de todo el enrutamiento
 
     switch($pageRequest){
@@ -22,7 +21,11 @@
             //llamar al controlador
             require_once("controllers/home.control.php");
             break;
-        case "login":
+        case "productos":
+            //llamar al controlador
+            require_once("controllers/productos.control.php");
+            break;
+        /*case "login":
             require_once("controllers/login.control.php");
             break;
         case "registro":
@@ -49,11 +52,9 @@
             break;
         case "empresa":
             require_once("controllers/mnt/empresa.control.php");
-            break;
+            break;*/
         default:
             require_once("controllers/error.control.php");
 
     }
-
-
 ?>

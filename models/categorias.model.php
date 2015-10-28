@@ -52,4 +52,16 @@
       }
       return false;
     }
+
+    function obtenerCategoriasForCombo($categoriaID){
+      $categorias = obtenerCategorias();
+      for($i=0;$i<count($categorias);$i++){
+        if($categorias[$i]["ctgid"] == $categoriaID){
+          $categorias[$i]["newCol"] = "selected";
+        }else{
+          $categorias[$i]["newCol"] = "";
+        }
+      }
+      return $categorias;
+    }
 ?>

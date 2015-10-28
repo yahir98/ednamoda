@@ -10,11 +10,13 @@
             <h1>{{page_title}}</h1>
             <ul class="menu">
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="index.php?page=categorias">Categorias</a></li>
-                <li><a href="index.php?page=unidades">Unidades</a></li>
-                <li><a href="index.php?page=empresas">Empresas</a></li>
-                <li><a href="index.php?page=login">Inicia Sesión</a></li>
-                <li><a href="index.php?page=registro">Regístrate</a></li>
+                <li><a href="index.php?page=productos">Productos</a></li>
+                {{ifnot userLogged}}
+                  <li><a href="index.php?page=login">Inicia Sesión</a></li>
+                {{endifnot userLogged}}
+                {{if userLogged}}
+                  <li><a href="index.php?page=registro">Regístrate</a></li>
+                {{endif userLogged}}
             </ul>
             {{{page_content}}}
             <div class="footer">

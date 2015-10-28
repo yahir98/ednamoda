@@ -1,21 +1,21 @@
 <h2>Trabajar con Categorías</h2>
 <a href="index.php?page=category&acc=ins">Nuevo</a>
-<table>
-  <tr>
-    <th>Código</th>
-    <th>Categoría</th>
-    <th>Estado</th>
-    <th>Acciones</th>
-  </tr>
+<div>
+  <div class="rowhd sdhide">
+    <div class="col1">Código</div>
+    <div class="col3">Categoría</div>
+    <div class="col1">Estado</div>
+    <div class="col1">Acciones</div>
+  </div>
   {{foreach categorias}}
-  <tr>
-    <td>{{ctgid}}</td>
-    <td>{{ctgdsc}}</td>
-    <td>{{ctgest}}</td>
-    <td>
-      <a href="index.php?page=category&acc=upd&ctgid={{ctgid}}">Update</a> | 
+  <div class="row">
+    <div class="col1">{{ctgid}}</div>
+    <div class="col3">{{ctgdsc}}</div>
+    <div class="col1">{{ctgest}}</div>
+    <div class="col1">
+      <a href="index.php?page=category&acc=upd&ctgid={{ctgid}}">Update</a> |
       <a href="index.php?page=category&acc=dlt&ctgid={{ctgid}}">Delete</a>
-    </td>
-  </tr>
+    </div>
+  </div>
   {{endfor categorias}}
-</table>
+</div>
