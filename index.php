@@ -30,6 +30,9 @@
         case "althome":
             require_once("controllers/althome.control.php");
             break;
+        case "formulario":
+            require_once("controllers/formulario.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
