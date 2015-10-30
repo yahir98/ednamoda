@@ -2,6 +2,6 @@
   $server = "127.0.0.1";
   $user = "root";
   $pswd = "root";
-  $database = "nw201501";
+  $database = "phpmvc";
   $port = "3306";
  ?>

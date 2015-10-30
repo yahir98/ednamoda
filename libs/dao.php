@@ -47,7 +47,7 @@
    }
 
    function getLastInserId(&$conexion = null){
-     global $conexion;
+     if(!$conexion) global $conexion;
      return $conexion->insert_id;
    }
 ?>

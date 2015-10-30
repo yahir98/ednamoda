@@ -7,9 +7,8 @@
   require_once("libs/template_engine.php");
 
   function run(){
-    renderizar("home",$_SESSION);
-
-
+    addCssRef("public/css/home.css");
+    renderizar("home",array());
   }
 
 

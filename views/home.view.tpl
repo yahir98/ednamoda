@@ -31,4 +31,21 @@
     </li>
   </ol>
 </p>
-<img class="postimage" src="public/img/mvcDiagram.svg" />
+<img class="postimage" src="public/imgs/mvcDiagram.svg"/>
+<h2>Estructura Básica de Controlador</h2>
+<pre>
+    /* Example Controller
+     * 2015-10-14
+     * Created By OJBA
+     * Last Modification 2015-10-14 20:04
+     */
+      //Cargando Plantillero
+      require_once("libs/template_engine.php");
+
+      function run(){
+        /* require_once("models/entidad.model.php ") */
+        /* Procesamiento */
+        renderizar("nombrePlantilla", array("page_title"=>"Un Arreglo Con Data"));
+      }
+      run();
+</pre>

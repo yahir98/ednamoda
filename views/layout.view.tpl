@@ -3,24 +3,28 @@
         <head>
             <meta charset="utf-8" />
             <title>{{page_title}}</title>
-            <link rel="stylesheet" href="public/css/smvc.css" />
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="public/css/estilo1.css" />
+            {{foreach css_ref}}
+                <link rel="stylesheet" href="{{uri}}" />
+            {{endfor css_ref}}
         </head>
         <body>
-            <h1>{{page_title}}</h1>
-            <ul class="menu">
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="index.php?page=productos">Productos</a></li>
-                {{ifnot userLogged}}
-                  <li><a href="index.php?page=login">Inicia Sesión</a></li>
-                {{endifnot userLogged}}
-                {{if userLogged}}
-                  <li><a href="index.php?page=registro">Regístrate</a></li>
-                {{endif userLogged}}
-            </ul>
-            {{{page_content}}}
+            <div class="menu">
+                <ul>
+                    <li><a href="index.php?page=home">Home</a></li>
+                    <li><a href="index.php?page=althome">Alt Home</a></li>
+                    <li class="title"><b>{{page_title}}</b></li>
+                    <li><a href>Menu Item 4</a></li>
+                    <li><a href>Menu Item 5</a></li>
+                </ul>
+            </div>
+            <div class="contenido">
+                {{{page_content}}}
+            </div>
             <div class="footer">
-              Todos los derechos Reservados 2015
+                Derechos Reservados 2015
             </div>
         </body>
     </html>

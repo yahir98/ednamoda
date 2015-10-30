@@ -25,4 +25,17 @@
         }
       }
     }
+
+    function addCssRef($uri){
+        global $global_context;
+        if(isset($global_context["css_ref"])){
+            $global_context["css_ref"][] = array("uri"=>$uri);
+        }else{
+            $global_context["css_ref"] = array(array("uri"=>$uri));
+        }
+    }
+    function addJsRef($uri, $first = true){
+
+    }
+
 ?>
