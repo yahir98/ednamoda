@@ -21,17 +21,14 @@
         case "menu":
             require_once("controllers/menu.control.php");
             break;
-        case "productos":
-            require_once("controllers/productos.control.php");
-            break;
         case "login":
             require_once("controllers/login.control.php");
             break;
         case "registro":
             require_once("controllers/registro.control.php");
             break;
-        case "reservacion":
-            require_once("controllers/reservacion.control.php");
+        case "althome":
+            require_once("controllers/althome.control.php");
             break;
         default:
             require_once("controllers/error.control.php");

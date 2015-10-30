@@ -1,6 +1,5 @@
 <?php
-
-    function renderizar($vista, $datos){
+    function renderizar($vista, $datos, $layoutFile = "layout.view.tpl"){
         if(!is_array($datos)){
             http_response_code(404);
             die("Error de renderizador: datos no es un arreglo");
@@ -9,10 +8,9 @@
         //union de los dos arreglos
         global $global_context;
         $datos = array_merge($global_context, $datos);
-
+        $datos=array_merge($_SESSION, $datos);
         $viewsPath = "views/";
         $fileTemplate = $vista.".view.tpl";
-        $layoutFile = "layout.view.tpl";
         $htmlContent = "";
         if(file_exists($viewsPath.$layoutFile)){
             $htmlContent = file_get_contents($viewsPath.$layoutFile);
@@ -22,21 +20,23 @@
                             $tmphtml,
                             $htmlContent);
                 //Limpiar Saltos de Pagina
-                $htmlContent = str_replace("\n","",$htmlContent);
-                $htmlContent = str_replace("\r","",$htmlContent);
-                $htmlContent = str_replace("\t","",$htmlContent);
-                $htmlContent = str_replace("  ","",$htmlContent);
+                if (strpos($htmlContent,"<pre>")){
+
+                }else{
+                    $htmlContent = str_replace("\n","",$htmlContent);
+                    $htmlContent = str_replace("\r","",$htmlContent);
+                    $htmlContent = str_replace("\t","",$htmlContent);
+                    $htmlContent = str_replace("  ","",$htmlContent);
+                }
 
                 //obtiene un arreglo separando lo distintos tipos de nodos
                 $template_code = parseTemplate($htmlContent);
-
                 $htmlResult = renderTemplate($template_code, $datos);
 
                 echo $htmlResult;
 
             }
         }
-
     }
 
     function renderTemplate($template_block, $context){
@@ -44,15 +44,20 @@
         $foreachIsOpen = false;
         $ifIsOpen = false;
         $ifCondition = false;
+        $ifNotIsOpen = false;
+        $ifNotCondition = false;
         $innerBlock = array();
         $currentContext = "";
+
         foreach($template_block as $node){
             //buscando si es un cierre de foreach
             if(strpos($node,"{{endfor $currentContext}}") !== false){
                 if ($foreachIsOpen){
                     $foreachIsOpen = false;
-                    foreach($context[$currentContext] as $forcontext) {
-                        $renderedHTML .= renderTemplate($innerBlock, $forcontext);
+                    if(isset($context[$currentContext] )){
+                        foreach($context[$currentContext] as $forcontext) {
+                            $renderedHTML .= renderTemplate($innerBlock, $forcontext);
+                        }
                     }
                     $innerBlock = array();
                     $currentContext = "";
@@ -60,7 +65,19 @@
                 }
             }
 
+
             //buscando si es un cierre de if
+            if(strpos($node,"{{endifnot $currentContext}}") !== false){
+                if ($ifNotIsOpen){
+                    $ifNotIsOpen = false;
+                    $renderedHTML .= ($ifNotCondition)?renderTemplate($innerBlock, $context):"";
+                    $currentContext = "";
+                    $innerBlock = array();
+                    $ifNotCondition = false;
+                    continue;
+                }
+            }
+
             if(strpos($node,"{{endif $currentContext}}") !== false){
                 if ($ifIsOpen){
                     $ifIsOpen = false;
@@ -72,7 +89,7 @@
                 }
             }
 
-            if($foreachIsOpen || $ifIsOpen){
+            if($foreachIsOpen || $ifIsOpen || $ifNotIsOpen){
                 $innerBlock[] = $node;
                 continue;
             }
@@ -86,6 +103,17 @@
                 }
             }
             //buscando si es un if
+            if(strpos($node,"{{ifnot")  !== false){
+                if(!$ifNotIsOpen){
+                    $ifNotIsOpen = true;
+                    $currentContext = trim(str_replace("}}","",str_replace("{{ifnot","",$node)));
+                    if(isset($context[$currentContext])){
+                        $ifNotCondition = ($context[$currentContext]) == false;
+                    }
+                    continue;
+                }
+            }
+
             if(strpos($node,"{{if")  !== false){
                 if(!$ifIsOpen){
                     $ifIsOpen = true;
@@ -115,7 +143,9 @@
         $regexp_array = array( 'foreach'   => '(\{\{foreach \w*\}\})',
                                'endfor'    => '(\{\{endfor \w*\}\})',
                                'if'        => '(\{\{if \w*\}\})',
-                               'if_close'  => '(\{\{endif \w*\}\})');
+                               'if_not'    =>'(\{\{ifnot \w*\}\})',
+                               'if_close'  => '(\{\{endif \w*\}\})',
+                               'ifnot_close'  => '(\{\{endifnot \w*\}\})');
 
         $tag_regexp = "/" . join( "|", $regexp_array ) . "/";
 
