@@ -32,6 +32,8 @@
   </ol>
 </p>
 <img class="postimage" src="public/imgs/mvcDiagram.svg"/>
+<h2>Crear una nueva ruta</h2>
+<img class="postimage" src="public/imgs/actividad1.svg"/>
 <h2>Estructura Básica de Controlador</h2>
 <pre>
     /* Example Controller
