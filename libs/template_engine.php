@@ -16,6 +16,7 @@
         $viewsPath = "views/";
         $fileTemplate = $vista.".view.tpl";
         $htmlContent = "";
+        //die($layoutFile);
         if(file_exists($viewsPath.$layoutFile)){
             $htmlContent = file_get_contents($viewsPath.$layoutFile);
             if(file_exists($viewsPath.$fileTemplate)){

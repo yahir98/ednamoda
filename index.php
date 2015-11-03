@@ -33,6 +33,9 @@
         case "formulario":
             require_once("controllers/formulario.control.php");
             break;
+        case "mensajes":
+            require_once("controllers/mensajes.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
