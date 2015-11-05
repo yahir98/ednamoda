@@ -36,6 +36,9 @@
         case "mensajes":
             require_once("controllers/mensajes.control.php");
             break;
+        case "mensajeform":
+            require_once("controllers/mensajesform.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
