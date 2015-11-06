@@ -1,6 +1,6 @@
 <?php
+    require_once("libs/template_engine.php");
     $global_context = array();
-
     function addToContext($key,$value){
         global $global_context;
         $global_context[$key] = $value;
@@ -9,6 +9,15 @@
     function redirectWithMessage($message, $url="index.php"){
       echo "<script>alert('$message'); window.location='$url';</script>";
       die();
+    }
+
+    function redirectWithHtmlMessage($message, $url="index.php"){
+    $messageArray = array(
+        "message" => $message,
+        "url" => $url
+    );
+     renderizar("htmlmessage",$messageArray);
+     die();
     }
 
     function redirectToUrl($url){

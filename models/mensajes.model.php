@@ -29,5 +29,18 @@
         return ejecutarNonQuery($insStr);
     }
 
+    function modificarMensaje($msgid, $msgdsc){
+        $updstr  = sprintf("update mensajes set msgdsc='%s' where msgid=%d",
+                            valstr($msgdsc),
+                            intval($msgid)
+                        );
+        return ejecutarNonQuery($updstr);
+    }
 
+    function eliminarMensaje($msgid){
+        $delstr = sprintf("Delete from mensajes where msgid=%d;",
+                            intval($msgid)
+                        );
+        return ejecutarNonQuery($delstr);
+    }
  ?>

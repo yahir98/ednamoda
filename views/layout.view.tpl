@@ -16,7 +16,7 @@
                     <li><a href="index.php?page=home">Home</a></li>
                     <li><a href="index.php?page=althome">Alt Home</a></li>
                     <li class="title"><b>{{page_title}}</b></li>
-                    <li><a href>Menu Item 4</a></li>
+                    <li><a href="index.php?page=mensajes">Mensajes</a></li>
                     <li><a href>Menu Item 5</a></li>
                 </ul>
             </div>

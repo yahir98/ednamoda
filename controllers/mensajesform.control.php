@@ -16,7 +16,9 @@
         $mensajeData = array(
             "msgid"=>"",
             "formMode" => "INS",
-            "msgdsc"=>""
+            "msgdsc"=>"",
+            "msgdscdisable" =>true,
+            "errors" => array()
         );
 
         if(isset($_POST["formMode"])){
@@ -36,8 +38,10 @@
             $mensajeData["formMode"] = $formData["formmode"];
             switch($mensajeData["formMode"]){
                 case "INS":
+                    $mensajeData["msgdscdisable"] = false;
                     break;
                 case "UPD":
+                    $mensajeData["msgdscdisable"] = false;
                 case "DEL":
                 case "SEL":
                     $Mensaje = obtenerMensajePorID($formData["msgid"]);
@@ -47,6 +51,7 @@
                     }
                     break;
             }
+
       }
 
       function manejarElPost($formData, &$mensajeData){
@@ -56,13 +61,35 @@
                   //validacion a nivel de server
                   if(guardarMensaje($formData["msgdsc"]))
                   {
-                      redirectWithMessage("Mensaje Guardado Exitosamente",
+                      redirectWithHtmlMessage("Mensaje Guardado Exitosamente",
                                          "index.php?page=mensajes");
+                  }else{
+                      $mensajeData["msgdscdisable"] = false;
+                      $mensajeData["msgid"] = $formData["msgid"];
+                      $mensajeData["msgdsc"] = $formData["msgdsc"];
+                      $mensajeData["errors"][] = array("error"=>"No se Insertó el registro de Mensaje");
                   }
                   break;
               case "UPD":
+                  if(modificarMensaje($formData["msgid"], $formData["msgdsc"])){
+                        redirectWithHtmlMessage("Mensaje Actualizado Exitosamente",
+                                           "index.php?page=mensajes");
+                  }else{
+                      $mensajeData["msgdscdisable"] = false;
+                      $mensajeData["msgid"] = $formData["msgid"];
+                      $mensajeData["msgdsc"] = $formData["msgdsc"];
+                      $mensajeData["errors"][] = array("error"=>"No se Actualizó el registro de Mensaje");
+                  }
                   break;
               case "DEL":
+                    if(eliminarMensaje($formData["msgid"])){
+                        redirectWithHtmlMessage("Mensaje Eliminado Exitosamente",
+                                           "index.php?page=mensajes");
+                    }else{
+                        $mensajeData["msgid"] = $formData["msgid"];
+                        $mensajeData["msgdsc"] = $formData["msgdsc"];
+                        $mensajeData["errors"][] = array("error"=>"No se Eliminó el registro de Mensaje");
+                    }
                   break;
           }
       }

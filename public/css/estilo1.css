@@ -69,3 +69,22 @@ pre{
     padding:1em;
     border-radius: 3px;
 }
+
+
+.message{
+    background-color:#8B6D6D;
+    padding:4em;
+    border-radius: 0.25em;
+    box-shadow: 1px 1px 1px #000;
+    width:80%;
+    max-width: 920px;
+    margin:150px auto;
+    text-align: center;
+}
+
+.center{
+    text-align:center;
+}
+.right{
+    text-align: right;
+}
