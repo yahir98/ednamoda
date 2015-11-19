@@ -1,3 +1,4 @@
+<div class="blob">
 <h2>Desarrollo de Negocios Web</h2>
 <p>
   Este es un simple ejemplo de como podemos utilizar php y los conceptos de un patrón MVC para estructurar un proyecto de negocio web usando un esquema funcional. El patrón "Modelo, Vista Controlador" es utilizando en muchos lenguages de programación por su forma lógica y versatil de organizar el código. Dentro de los beneficios que ofrece el implementarlo se encuentra:
@@ -36,6 +37,7 @@
 <img class="postimage" src="public/imgs/actividad1.svg"/>
 <h2>Estructura Básica de Controlador</h2>
 <pre>
+    &lt;?php
     /* Example Controller
      * 2015-10-14
      * Created By OJBA
@@ -50,4 +52,55 @@
         renderizar("nombrePlantilla", array("page_title"=>"Un Arreglo Con Data"));
       }
       run();
+     ?&gt;
 </pre>
+<h2>Estructura Básica de un Modelo</h2>
+<pre>
+    &lt;?php
+        //modelo de datos de productos
+        require_once("libs/dao.php");
+
+        function obtenerUsuario($userName){
+            $usuario = array();
+            $sqlstr = sprintf("SELECT idusuarios, usuarioemail, usuarionom, usuariopwd,
+                                usuarioest, UNIX_TIMESTAMP(usuariofching) as usuariofching,
+                                usuariolstlgn, usuariofatm, usuariofchlp FROM usuarios
+                                where usuarioemail = '%s';",$userName);
+
+            $usuario = obtenerUnRegistro($sqlstr);
+            return $usuario;
+        }
+
+        function insertUsuario($userName, $userEmail,
+                               $timestamp, $password){
+            $strsql = "INSERT INTO usuarios
+                        (usuarioemail, usuarionom, usuariopwd,
+                        usuarioest, usuariofching,  usuariolstlgn,
+                        usuariofatm, usuariofchlp)
+                       VALUES
+                        ('%s', '%s','%s','ACT', FROM_UNIXTIME(%s) , null, 0, null);";
+            $strsql = sprintf($strsql, valstr($userEmail),
+                                        valstr($userName),
+                                        $password,
+                                        $timestamp);
+
+            if(ejecutarNonQuery($strsql)){
+                return getLastInserId();
+            }
+            return 0;
+        }
+     ?&gt;
+</pre>
+<h2>Estructura Básica de una Vista</h2>
+<pre>
+    &lt;h1&gt;Lo sentimos la página que usted ha
+     solicitado no está disponible.&lt;/h1&gt;
+    &lcub;&lcub;if showErrors&rcub;&rcub;
+        &lt;ul&gt;
+            &lcub;&lcub;foreach errors&rcub;&rcub;
+                &lt;li&gt;&lcub;&lcub;error_msg&rcub;&rcub;&lt;/li&gt;
+            &lcub;&lcub;endfor errors&rcub;&rcub;
+        &lt;/ul&gt;
+    &lcub;&lcub;endif showErrors&rcub;&rcub;
+</pre>
+</div>

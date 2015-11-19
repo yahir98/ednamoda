@@ -14,10 +14,10 @@
             <div class="menu">
                 <ul>
                     <li><a href="index.php?page=home">Home</a></li>
-                    <li><a href="index.php?page=althome">Alt Home</a></li>
+                    <li><a href="index.php?page=workwith">Work With Pattern</a></li>
                     <li class="title"><b>{{page_title}}</b></li>
-                    <li><a href="index.php?page=mensajes">Mensajes</a></li>
-                    <li><a href>Menu Item 5</a></li>
+                    <li><a href="index.php?page=patterns">Patrones de Negocio</a></li>
+                    <li><a href="">y Ahora qué</a></li>
                 </ul>
             </div>
             <div class="contenido">
