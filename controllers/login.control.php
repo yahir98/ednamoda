@@ -30,7 +30,8 @@
           $pswd = md5($pswd);
           if($usuario["usuariopwd"] == $pswd){
             mw_setEstaLogueado($userName, true);
-            header("Location:index.php" . $_POST["returnUrl"]);
+            //header("Location:index.php" . $_POST["returnUrl"]);
+            header("Location:index.php?page=menulogged");
             die();
           }else{
             $errores[] = array("errmsg"=>"Credenciales Incorrectas");

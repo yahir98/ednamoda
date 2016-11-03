@@ -47,4 +47,10 @@
 
     }
 
+    function addSelectedCmbArray($arreglo,$atributo,$valor,$selAtributo="selected"){
+        for($i = 0 ; $i < count($arreglo); $i++){
+          $arreglo[$i][$selAtributo] = ($arreglo[$i][$atributo]==$valor)?"selected":"";
+        }
+        return $arreglo;
+    }
 ?>

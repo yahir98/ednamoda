@@ -39,6 +39,13 @@
         case "mensajeform":
             require_once("controllers/mensajesform.control.php");
             break;
+        case "workwith":
+            require_once("controllers/workwith.control.php");
+            break;
+        case "workwithform":
+            require_once("controllers/workwithform.control.php");
+            break;
+
         default:
             require_once("controllers/error.control.php");
 

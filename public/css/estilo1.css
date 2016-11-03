@@ -48,6 +48,7 @@ body, .menu, .contenido, .footer {
     padding:1em;
     margin-bottom: 2em;
     margin-top:51px;
+    line-height: 1.5;
 }
 
 .blob{
