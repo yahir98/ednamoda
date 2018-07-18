@@ -6,10 +6,8 @@
  */
 
   function run(){
-    http_response_code(404);
-    renderizar("error", array("page_title"=>"Error 404"));
+    renderizar("notauth", array());
   }
  
-
   run();
 ?>

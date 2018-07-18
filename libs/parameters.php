@@ -14,7 +14,7 @@
  */
 $server = "127.0.0.1";
 $user = "demouser";
-$pswd = "cam3l1t4s";
+$pswd = "carm3l1t4s";
 $database = "demoalgorith";
 $port = "3306";
 

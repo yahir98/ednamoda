@@ -57,11 +57,15 @@ if ($logged) {
         die();
     }
     generarMenu($_SESSION["userCode"]);
-    include_once 'controllers/mw/notif.mw.php';
 }
 
 require_once "controllers/mw/support.mw.php";
 switch ($pageRequest) {
+case "dashboard":
+    ($logged)?
+      include_once "controllers/dashboard.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
 case "users":
     ($logged)?
       include_once "controllers/security/users.control.php":
@@ -72,9 +76,24 @@ case "user":
       include_once "controllers/security/user.control.php":
       mw_redirectToLogin($_SERVER["QUERY_STRING"]);
     die();
-case "mntrol":
+case "roles":
     ($logged)?
-      include_once "controllers/mantenimientos/tramiteRol.control.php":
+      include_once "controllers/security/roles.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
+case "rol":
+    ($logged)?
+      include_once "controllers/security/rol.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
+case "programas":
+    ($logged)?
+      include_once "controllers/security/programas.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
+case "programa":
+    ($logged)?
+      include_once "controllers/security/programa.control.php":
       mw_redirectToLogin($_SERVER["QUERY_STRING"]);
     die();
 }
